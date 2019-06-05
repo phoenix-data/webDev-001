@@ -1,15 +1,34 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Phoenix Data: File Upload</title>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>This is file upload page</p>
-    <div>
-    	<h4>Upload yout data file:-</h4>
-    	<input type= "file">
-    </div>
+
+     <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="File Upload">File Upload:</label>
+                        <input type="file" class="form-control" id="fileUserInput">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Upload</button> 
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
   </body>
 </html>

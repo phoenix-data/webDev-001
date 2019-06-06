@@ -1,8 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
+const Joi = require('joi');
 var logger = require('morgan');
+
+const db = require("./db");
+const collection = "files";
+
 
 var indexRouter = require('./routes/index');
 
@@ -16,6 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -34,6 +41,23 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+db.connect((err)=>{
+    // If err unable to connect to database
+    // End application
+    if(err){
+        console.log('unable to connect to database');
+        process.exit(1);
+    }
+    // Successfully connected to database
+    // Start up our Express Application
+    // And listen for Request
+    else{
+        app.listen(3000,()=>{
+            console.log('connected to database, app listening on port 3000');
+        });
+    }
 });
 
 module.exports = app;

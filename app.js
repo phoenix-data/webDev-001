@@ -27,7 +27,6 @@ const conn = mongoose.createConnection(mongoURI);
 //Init gfs
 let gfs;
 
-var conn = mongoose.createConnection(..);
 conn.once('open', () => {
 	//Init stream
   gfs = Grid(conn.db, mongoose.mongo);
@@ -55,8 +54,16 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
+// @route GET /
+// @desc Loads form
 app.get('/', (req, res)=>{
 	res.render('index');
+});
+
+// @route POST /upload
+// @desc Uploads file to DB
+app.post('/upload', upload.single('file'), (req, res) => {
+	res.json({ file: req.file });
 });
 
 const port = 3000;

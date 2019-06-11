@@ -84,7 +84,7 @@ app.get('/files', (req,res) => {
 });
 
 // @route GET /files/:filename
-// @desc Display all files in JSON
+// @desc Display single file  in JSON
 app.get('/files/:filename', (req,res) => {
 	gfs.files.findOne({filename: req.params.filename}, (err, file) => {
 		//check if file
@@ -97,6 +97,8 @@ app.get('/files/:filename', (req,res) => {
 		return res.json(file);
 	});
 });
+
+
 const port = 3000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

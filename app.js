@@ -18,6 +18,22 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 
+//Mongo URI
+const mongoURI = "mongodb://localhost:27017/Phoenix_mongodb";
+
+//Create mongo connection
+const conn = mongoose.createConnection(mongoURI);
+
+//Init gfs
+let gfs;
+
+var conn = mongoose.createConnection(..);
+conn.once('open', () => {
+	//Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('files');
+});
+
 
 
 app.get('/', (req, res)=>{
